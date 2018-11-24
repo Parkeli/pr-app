@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30.414 43.414">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        filter: url(#Line_2);
+      }
+
+      .cls-3 {
+        filter: url(#Line_1);
+      }
+    </style>
+    <filter id="Line_1" x="0" y="0" width="30.414" height="30.414" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.235"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Line_2" x="0" y="13" width="30.414" height="30.414" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur-2"/>
+      <feFlood flood-opacity="0.235"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_44" data-name="Group 44" transform="translate(-20.293 -79.293)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, 20.29, 79.29)">
+      <line id="Line_1-2" data-name="Line 1" class="cls-1" x1="14" y2="14" transform="translate(7.21 7.21)"/>
+    </g>
+    <g class="cls-2" transform="matrix(1, 0, 0, 1, 20.29, 79.29)">
+      <line id="Line_2-2" data-name="Line 2" class="cls-1" x1="14" y1="14" transform="translate(7.21 20.21)"/>
+    </g>
+  </g>
+</svg>

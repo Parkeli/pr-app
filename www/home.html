@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Parkeli</title>
+</head>
+
+<body>
+    <div class="app" id="app">
+        <div class="header">
+            <div class="container">
+                <div class="logo">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="row"> 
+                                <div class="wrapper">
+                                    <img src="img/profile.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7 heading-logo">
+                            <h1>Parkeli</h1>
+                            <h2>Brno</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="weather-widget touchSensitive">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="left">
+                                <img src="img/cloud.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="center">
+                                <h2>3°C in Brno</h2>
+                                <h3>Cloudy</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>3°C / 2°C</h2>
+                                <h3><img src="img/humidity.svg"> 96%</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cityname">
+            <div class="container">
+                <div class="row">
+                   <h2>Brno</h2>
+                </div>
+            </div>
+        </div>
+        <a href="detail.html">
+            <div class="park-widget live touchSensitive onloadhide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="center">
+                                    <h2 id="name">AT&amp;T Parking</h2>
+                                    <p id="address">Čichnova 23, Brno</p>
+                                    <h4></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="right">
+                                    <h2><span id="free"></span> / <span id="all"></span></h2>
+                                    <h3 id="distance">counting...</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>Parkovací dům Domini park</h2>
+                                <p>Husova 712/14a, Brno</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>237 / 283</h2>
+                                <h3>620m</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>JD Parking Brno</h2>
+                                <p>Rooseveltova 711/3, Brno</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>121 / 426</h2>
+                                <h3>1,3km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>Parking House PINKI PARK</h2>
+                                <p>Kopečná 242/22, Brno</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>533 / 928</h2>
+                                <h3>1,8km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>Parkovací dům Rozmarýn</h2>
+                                <p>Kounicova 1007/2a, Brno</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>106 / 137</h2>
+                                <h3>2,1km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>Husova</h2>
+                                <p>Husova 536/14</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>79 / 84</h2>
+                                <h3>2,3km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>Parking Hotel International Brno</h2>
+                                <p>Husova 200/16</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>201 / 947</h2>
+                                <h3>2,5km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="park-widget touchSensitive onloadhide">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="center">
+                                <h2>parking IBC</h2>
+                                <p>Příkop 838/6</p>
+                                <h4>ICONS</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="right">
+                                <h2>29 / 31</h2>
+                                <h3>2,7km</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jqr.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script> <script type="text/javascript" src="js/firebase.js"></script>
+    <script type="text/javascript">
+        var config = {
+    apiKey: "AIzaSyDibu0rckQQh2y7ALCWwk_TW7aHrOyL_EQ",
+    authDomain: "parkeli-790b8.firebaseapp.com",
+    databaseURL: "https://parkeli-790b8.firebaseio.com",
+    projectId: "parkeli-790b8",
+    storageBucket: "parkeli-790b8.appspot.com",
+    messagingSenderId: "77454800588"
+    };
+    firebase.initializeApp(config);
+
+
+    function ShowAllOnPage() {
+        var GetID = document.getElementById('all');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('actual').child('all');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+
+    }
+
+    function ShowFreeOnPage() {
+        var GetID = document.getElementById('free');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('actual').child('free');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+
+    function ShowA0OnPage() {
+        var GetID = document.getElementById('A0');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A0');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA1OnPage() {
+        var GetID = document.getElementById('A1');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A1');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA2OnPage() {
+        var GetID = document.getElementById('A2');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A2');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA3OnPage() {
+        var GetID = document.getElementById('A3');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A3');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowNameOnPage() {
+        var GetID = document.getElementById('name');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('name');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowGpsOnPage() {
+        var GetID = document.getElementById('gps');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('gps');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowAddressOnPage() {
+        var GetID = document.getElementById('address');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('address');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;
+    }
+        
+        
+        
+    ShowAddressOnPage();
+
+
+
+
+    ShowAllOnPage();
+    ShowFreeOnPage();
+    ShowA0OnPage();
+    ShowA1OnPage();
+    ShowA2OnPage();
+    ShowA3OnPage();
+    ShowNameOnPage();
+    ShowGpsOnPage();
+        
+    </script>
+    <script type="text/javascript">
+        
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
+        
+        $(document).ready(function () {
+                $("#app").addClass("onloadhide");
+                setTimeout(function(){
+                    $("#app").removeClass("onloadhide");
+                    $("#app").addClass("onloadanim");
+                    $(".park-widget").each(function(k,v) {
+                    var $this = this;
+                    setTimeout(function(){
+                        k = k + 1;
+                        $($this).addClass("onloadanim");
+                        $($this).removeClass("onloadhide");
+                    }, (k + 1) * 200);  
+                });  
+                }, 500);
+            function calcCrow(lat1, lon1, lat2, lon2)
+            {
+            var R = 6371; // km
+            var dLat = toRad(lat2-lat1);
+            var dLon = toRad(lon2-lon1);
+            var lat1 = toRad(lat1);
+            var lat2 = toRad(lat2);
+
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c;
+            return d;
+            }
+
+            // Converts numeric degrees to radians
+            function toRad(Value)
+            {
+            return Value * Math.PI / 180;
+            }
+            document.getElementById("distance").innerHTML = calcCrow(la,lo,49.2144862,16.4993604)*1000;
+                   
+            //$(".park-widget").addClass("onloadanim");
+            //$(".park-widget").removeClass("onloadhide");
+            var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+            $(".touchSensitive").mousedown(function(event) {
+                if (isTouchDevice == false) { 
+                    $(this).addClass("active");   
+                }
+            });
+            $(".touchSensitive").mouseup(function(event) {
+                if (isTouchDevice == false) {   
+                    $(this).removeClass("active"); 
+                }
+            });
+            $('.touchSensitive').on('touchstart', function(){
+                if (isTouchDevice)  {   
+                    $(this).addClass("active");  
+                }
+            });
+            $('.touchSensitive').on('touchend', function(){
+                if (isTouchDevice)  {  
+                    $(this).removeClass("active"); 
+                }
+            });
+            
+            var la = position.coords.latitude;
+            var lo = position.coords.longitude;
+            
+            
+        });
+
+    </script>
+</body>
+
+</html>

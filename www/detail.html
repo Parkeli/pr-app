@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Parkeli - detail</title>
+</head>
+
+<body>
+    <div class="app" id="app">
+        <div class="header">
+            <div class="container">
+                <div class="logo">
+                    <div class="row">
+                        <div class="col-1">
+                            <a href="home.html"><img src="img/arrow.svg" width="32px"></a>
+                        </div>
+                        <div class="col-11 heading-logo">
+                            <h1 id="name">Parkeli</h1>
+                            <h2 id="gps">Brno</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="data">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-11">
+                        <h4>Počet míst: <span id="all"></span></h4>
+    <h4>Obsazená místa: <span id="free"></span></h4>
+    <h4>Místo 1: <span id="A0"></span></h4>
+    <h4>Místo 2: <span id="A1"></span></h4>
+    <h4>Místo 3: <span id="A2"></span></h4>
+    <h4>Místo 4: <span id="A3"></span></h4>
+                            
+   <h4> <span id="address"></span></h4>
+                            
+                    </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jqr.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script type="text/javascript" src="js/firebase.js"></script>
+    <script type="text/javascript">
+        var config = {
+    apiKey: "AIzaSyDibu0rckQQh2y7ALCWwk_TW7aHrOyL_EQ",
+    authDomain: "parkeli-790b8.firebaseapp.com",
+    databaseURL: "https://parkeli-790b8.firebaseio.com",
+    projectId: "parkeli-790b8",
+    storageBucket: "parkeli-790b8.appspot.com",
+    messagingSenderId: "77454800588"
+    };
+    firebase.initializeApp(config);
+
+
+    function ShowAllOnPage() {
+        var GetID = document.getElementById('all');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('actual').child('all');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+
+    }
+
+    function ShowFreeOnPage() {
+        var GetID = document.getElementById('free');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('actual').child('free');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+
+    function ShowA0OnPage() {
+        var GetID = document.getElementById('A0');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A0');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA1OnPage() {
+        var GetID = document.getElementById('A1');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A1');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA2OnPage() {
+        var GetID = document.getElementById('A2');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A2');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowA3OnPage() {
+        var GetID = document.getElementById('A3');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('free').child('places').child('A3');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowNameOnPage() {
+        var GetID = document.getElementById('name');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('name');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowGpsOnPage() {
+        var GetID = document.getElementById('gps');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('gps');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;    
+    }
+    function ShowAddressOnPage() {
+        var GetID = document.getElementById('address');
+        var dbRef = firebase.database().ref().child('parkings').child('5d41402abc4b2a76b9719d911017c592').child('general').child('info').child('address');
+        dbRef.on('value', snap => GetID.innerText = snap.val());
+        return true;
+    }
+        
+        
+        
+    ShowAddressOnPage();
+
+
+
+
+    ShowAllOnPage();
+    ShowFreeOnPage();
+    ShowA0OnPage();
+    ShowA1OnPage();
+    ShowA2OnPage();
+    ShowA3OnPage();
+    ShowNameOnPage();
+    ShowGpsOnPage();
+        
+    </script>
+    <script type="text/javascript">
+        
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
+        
+        $(document).ready(function () {
+                $("#app").addClass("onloadhide");
+                setTimeout(function(){
+                    $("#app").removeClass("onloadhide");
+                    $("#app").addClass("onloadanim");
+                    $(".park-widget").each(function(k,v) {
+                    var $this = this;
+                    setTimeout(function(){
+                        k = k + 1;
+                        $($this).addClass("onloadanim");
+                        $($this).removeClass("onloadhide");
+                    }, (k + 1) * 200);  
+                });  
+                }, 500);
+                   
+            //$(".park-widget").addClass("onloadanim");
+            //$(".park-widget").removeClass("onloadhide");
+            var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+            $(".touchSensitive").mousedown(function(event) {
+                if (isTouchDevice == false) { 
+                    $(this).addClass("active");   
+                }
+            });
+            $(".touchSensitive").mouseup(function(event) {
+                if (isTouchDevice == false) {   
+                    $(this).removeClass("active"); 
+                }
+            });
+            $('.touchSensitive').on('touchstart', function(){
+                if (isTouchDevice)  {   
+                    $(this).addClass("active");  
+                }
+            });
+            $('.touchSensitive').on('touchend', function(){
+                if (isTouchDevice)  {  
+                    $(this).removeClass("active"); 
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
